@@ -9,8 +9,7 @@ public class TestRun {
 		// TODO Auto-generated method stub
 		Reader reader  = new Reader();
 		reader.getJar("C:/Users/paddy/Desktop/G00314635/string-service.jar");
-		//reader.getJar("C:/Users/paddy/Desktop/G00314635/string-service");
-
+		
 	}
 
 }
