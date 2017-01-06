@@ -40,20 +40,22 @@ public class Reader {
 				
 				Class queryClass;
 				try {
-					queryClass = Class.forName(name, false, cl);
+					queryClass = Class.forName(name, false, cl);//cl loads data
 					cls.add(queryClass);
-					new Reflection(queryClass);
+					//new Reflection(queryClass);
 					//System.exit(0);
 				} 
 				catch (ClassNotFoundException e) {
 					System.out.println("Couldn't find class '" + name + "'");
 					System.exit(0);
 				} 
-				 System.out.println(cls.size());
+				 //System.out.println(cls.size());
 			}
 			next = in.getNextJarEntry();
 		}
+		new MetricCalculator(cls, jarName);
 		in.close();
+		
 	}
 
 }
