@@ -1,13 +1,13 @@
 package ie.gmit.sw;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.lang.reflect.*;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.jar.JarEntry;
-import java.util.jar.JarInputStream;
+import java.util.Map;
 
 public class MetricCalculator {
 
@@ -21,15 +21,16 @@ public class MetricCalculator {
 		this.jar = jarName;
 		addClass();
 		calculateMetric();
-		//System.out.println("staaaaaab: " + graph.get(cls).getInDegree());
+		
 	}
 
 	// addClass
 	public void addClass() {
 		for (int i = 0; i < jarClass.size(); i++) {
 			graph.put(jarClass.get(i).getName(), new Metric());
+			graph.get(jarClass.get(i).getName()).setClassName(jarClass.get(i).getName());
 			System.out.println(jarClass.get(i).getName());
-			//System.out.println("staaaaaab: " + graph.get(i).getInDegree());
+			
 		}
 		System.out.println("List of packages: " + graph.keySet());
 		System.out.println("size/amount: " + graph.size());
@@ -49,19 +50,116 @@ public class MetricCalculator {
 			for (String name : graph.keySet()) {
 
 				Class queryClass = Class.forName(name, false, cl);// cl loads
-																	// data
-				System.out.println("Package: " + name);
+				reflection(queryClass);													// data
+				/*System.out.println("Package: " + name);
 				System.out.println();
 				System.out.println("class: " + queryClass.getName());
-			//	graph.get(queryClass.getName()).setOutDegree(outDegree);
+				//graph.get(queryClass.getName()).setOutDegree(outDegree);
 				System.out.println("Get InDegree-----: " + graph.get(queryClass.getName()).getInDegree());
 				System.out.println("Get OutDegree-----: " + graph.get(queryClass.getName()).getOutDegree());
 				System.out.println("Get Stability-----: " + graph.get(queryClass.getName()).getStability());
-				new Reflection(queryClass);
+				new Reflection(queryClass);*/
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+
+	private void reflection(Class queryClass) {
+		
+		List<String> classList = new ArrayList<String>();
+		int outdegree = 0;
+
+		Class[] interfaces = queryClass.getInterfaces();
+		for(Class i : interfaces){
+			//System.out.println(i.getName());
+			if(graph.containsKey(i.getName())) {
+				if(!classList.contains(i.getName())){
+					//System.out.println(i.getName());
+					classList.add(i.getName());
+					outdegree++;
+					Metric m = graph.get(i.getName());
+					m.setInDegree(m.getInDegree() + 1);
+				}
+			}
+		}
+
+		Constructor[] cons = queryClass.getConstructors(); //Get the set of constructors
+		Class[] constructorParams;
+
+		for(Constructor c : cons){
+
+			constructorParams = c.getParameterTypes();
+			for(Class param : constructorParams){
+				//System.out.println(param.getName());
+				if(graph.containsKey(param.getName())){
+					//System.out.println(param.getName());
+					if(!classList.contains(param.getName())){
+						//System.out.println(param.getName());
+						classList.add(param.getName());
+						outdegree++;
+						Metric m = graph.get(param.getName());
+						m.setInDegree(m.getInDegree() + 1);
+					}
+				}
+			}
+		}
+
+		Field[] fields = queryClass.getDeclaredFields();
+
+		for(Field f : fields)
+		{
+			Type type = f.getType();
+			//System.out.println(type.getTypeName());
+			if(graph.containsKey(type.getTypeName())){
+				if(!classList.contains(type.getTypeName())){
+					//System.out.println(type.getTypeName());
+					classList.add(type.getTypeName());
+					outdegree++;
+					Metric m = graph.get(type.getTypeName());
+					m.setInDegree(m.getInDegree() + 1);
+				}
+			}
+		}
+
+		Method[] methods = queryClass.getDeclaredMethods(); //Get the set of methods
+		Class[] methodParams;
+
+		for(Method m : methods){
+
+			Class methodReturnType = m.getReturnType();
+			//System.out.println(methodReturnType.getName());
+			if(graph.containsKey(methodReturnType.getName())){
+				if(!classList.contains(methodReturnType.getName())){
+					//System.out.println(methodReturnType.getName());
+					classList.add(methodReturnType.getName());
+					outdegree++;
+					Metric mc = graph.get(methodReturnType.getName());
+					mc.setInDegree(mc.getInDegree() + 1);
+				}
+			}
+
+			methodParams = m.getParameterTypes(); //Get method parameters
+			for(Class mp : methodParams){
+				//System.out.println(mp.getName());
+				if(graph.containsKey(mp.getName())){
+					if(!classList.contains(mp.getName())){
+						//System.out.println(mp.getName());
+						classList.add(mp.getName());
+						outdegree++;
+						Metric bm = graph.get(mp.getName());
+						bm.setInDegree(bm.getInDegree() + 1);
+					}
+				}
+			} 
+		}
+		System.out.println();
+		System.out.println("Class: " + queryClass.getName());
+		graph.get(queryClass.getName()).setOutDegree(outdegree);
+		System.out.println("Indegree: " + graph.get(queryClass.getName()).getInDegree());		
+		System.out.println("Outdegree: " + graph.get(queryClass.getName()).getOutDegree());		
+		System.out.println("Stability: " + graph.get(queryClass.getName()).getStability());
 		
 	}
 

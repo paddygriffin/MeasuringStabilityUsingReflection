@@ -4,7 +4,14 @@ public class Metric {
 	
 	private int inDegree;
 	private int outDegree;
+	private String className;
 	
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
 	public int getInDegree() {
 		return inDegree;
 	}
@@ -14,8 +21,8 @@ public class Metric {
 	public int getOutDegree() {
 		return outDegree;
 	}
-	public void setOutDegree(int outDegre) {
-		this.outDegree = outDegre;
+	public void setOutDegree(int outDegree) {
+		this.outDegree = outDegree;
 	}
 	
 	public float getStability(){
