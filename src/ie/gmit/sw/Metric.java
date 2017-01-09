@@ -14,8 +14,8 @@ public class Metric {
 	public int getOutDegree() {
 		return outDegree;
 	}
-	public void setOutDegree(int outDegree) {
-		this.outDegree = outDegree;
+	public void setOutDegree(int outDegre) {
+		this.outDegree = outDegre;
 	}
 	
 	public float getStability(){

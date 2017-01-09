@@ -36,6 +36,7 @@ public class Reflection{
 				for(Class mp : methodParams){
 
 					System.out.println("Method Parameter: " + mp.getName());
+					System.out.println();
 				}
 			}
 		}
@@ -77,4 +78,6 @@ public class Reflection{
 			Package pack = cls.getPackage(); //Get the package
 			System.out.println("Package Name: " + pack.getName());
 		}
+		
+		
 	}
