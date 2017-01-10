@@ -2,7 +2,8 @@ package ie.gmit.sw;
 
 /**
  * @author Patrick griffin G00314635
- *
+ * A Class used for calculating the positional stability metric.
+ * inDegree, outDegree and and use both to calculate the the Stability
  */
 public class Metric {
 
@@ -11,6 +12,7 @@ public class Metric {
 	private String className; // name of class
 
 	/**
+	 * Gets the name of the class of the represented metric.
 	 * @return class name
 	 */
 	public String getClassName() {
@@ -18,6 +20,7 @@ public class Metric {
 	}
 
 	/**
+	 * Sets the name of the class of the represented metric.
 	 * @param className
 	 */
 	public void setClassName(String className) {
@@ -25,6 +28,7 @@ public class Metric {
 	}
 
 	/**
+	 * Gets the indegree for the class.
 	 * @return
 	 */
 	public int getInDegree() {
@@ -32,7 +36,9 @@ public class Metric {
 	}
 
 	/**
+	 * Sets the inDegree for the class
 	 * @param inDegree
+	 * represents the number of classes that depend on this class.
 	 */
 	public void setInDegree(int inDegree) {
 		this.inDegree = inDegree;
@@ -46,6 +52,7 @@ public class Metric {
 	}
 
 	/**
+	 * Sets the outDegree for the class
 	 * @param outDegree
 	 */
 	public void setOutDegree(int outDegree) {

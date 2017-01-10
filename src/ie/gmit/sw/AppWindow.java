@@ -15,7 +15,7 @@ import javax.swing.border.BevelBorder;
 
 /**
  * @author Patrick griffin G00314635
- * The main window
+ * The main GUI application window for running the Java program using JFrame
  *
  */
 public class AppWindow {
@@ -25,7 +25,9 @@ public class AppWindow {
 
 	
 	public AppWindow(){
-		//Create a window for the application
+		/**
+		 * Create a window for the application
+		 */
 		frame = new JFrame();
 		frame.setTitle("B.Sc. in Software Development - GMIT");
 		frame.setSize(550, 500);
@@ -116,12 +118,7 @@ public class AppWindow {
         mid.setMaximumSize(new java.awt.Dimension(500, 300));
         mid.setMinimumSize(new java.awt.Dimension(500, 300));
         
-        //AppSummary cc = new AppSummary(frame, true);
-       // cc.setBackground(Color.WHITE);
-       // cc.setPreferredSize(new java.awt.Dimension(300, 300));
-       // cc.setMaximumSize(new java.awt.Dimension(300, 300));
-       // cc.setMinimumSize(new java.awt.Dimension(300, 300));
-       // mid.add(cc);
+      
 		frame.getContentPane().add(mid);
 		
         JPanel bottom = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -129,13 +126,7 @@ public class AppWindow {
         bottom.setMaximumSize(new java.awt.Dimension(500, 50));
         bottom.setMinimumSize(new java.awt.Dimension(500, 50));
         
-        /*JButton btnDialog = new JButton("Show Dialog"); //Create Quit button
-        btnDialog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	AppSummary as =  new AppSummary(frame, true);
-            	as.show();
-			}
-        });*/
+     
         
         JButton btnQuit = new JButton("Quit"); //Create Quit button
         btnQuit.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +134,7 @@ public class AppWindow {
             	System.exit(0);
 			}
         });
-      //  bottom.add(btnDialog);
+      
         bottom.add(btnQuit);
 
         frame.getContentPane().add(bottom);       

@@ -5,7 +5,8 @@ import javax.swing.table.*;
 
 /**
  * @author Patrick griffin G00314635
- *
+ * Class used to set up the table needed to display Class name
+ * inDegree, outDegree and Stability
  */
 public class TypeSummaryTableModel extends AbstractTableModel{
 	private static final long serialVersionUID = 777L;

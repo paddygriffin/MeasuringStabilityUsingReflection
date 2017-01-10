@@ -13,7 +13,7 @@ import java.util.jar.JarInputStream;
 
 
 /**
- * Jar Reader class
+ * Jar Reader class responsible for taking in a jar file and reading its classes
  * @author Patrick griffin G00314635
  *
  */

@@ -13,6 +13,7 @@ import java.util.Map;
 
 /**
  * @author Patrick griffin G00314635
+ * This class is responsible for taking in a jar file and reading its classes.
  *
  */
 public class MetricCalculator {
@@ -32,7 +33,10 @@ public class MetricCalculator {
 		
 	}
 
-	// addClass to map
+	
+	/**
+	 * Method to add Classes to the map when they are found
+	 */
 	public void addClass() {
 		System.out.println("Adding Classes to Map!\n");
 		System.out.println("Classes to be Added:");
@@ -83,6 +87,10 @@ public class MetricCalculator {
 		
 	}
 
+	/**
+	 * @param queryClass
+	 * reflection method
+	 */
 	private void reflection(Class queryClass) {
 		
 		List<String> classList = new ArrayList<String>();
