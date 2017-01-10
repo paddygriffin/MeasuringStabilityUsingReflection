@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class MetricCalculator {
 
-	private HashMap<String, Metric> graph = new HashMap<>();
+	private Map<String, Metric> graph = new HashMap<>();
 	private List<Class> jarClass;
 	private String jar;
 
@@ -26,11 +26,14 @@ public class MetricCalculator {
 
 	// addClass
 	public void addClass() {
+		System.out.println("Adding Classes to Map!\n");
+		System.out.println("Classes to be Added:");
+		
 		for (int i = 0; i < jarClass.size(); i++) {
 			graph.put(jarClass.get(i).getName(), new Metric());
 			graph.get(jarClass.get(i).getName()).setClassName(jarClass.get(i).getName());
 			System.out.println(jarClass.get(i).getName());
-			
+						
 		}
 		System.out.println("List of packages: " + graph.keySet());
 		System.out.println("size/amount: " + graph.size());
@@ -65,6 +68,20 @@ public class MetricCalculator {
 		}
 		
 	}
+	
+	public Object[][] getData(){
+		int i = 0;
+		Object[][] data = new Object[graph.size()][4];
+		for(Metric m : graph.values()){ //for every metric in graph.values
+			data[i][0] = m.getClassName();
+			data[i][1] = m.getInDegree();
+			data[i][2] = m.getOutDegree();
+			data[i][3] = m.getStability();
+			i++;
+		}
+			return data;
+		
+	}
 
 	private void reflection(Class queryClass) {
 		
@@ -73,7 +90,7 @@ public class MetricCalculator {
 
 		Class[] interfaces = queryClass.getInterfaces();
 		for(Class i : interfaces){
-			//System.out.println(i.getName());
+			
 			if(graph.containsKey(i.getName())) {
 				if(!classList.contains(i.getName())){
 					//System.out.println(i.getName());
