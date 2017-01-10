@@ -24,7 +24,7 @@ public class AppSummary extends JDialog{
         super.setTitle("Summary");
         super.setResizable(true);
         
-        this.setSize(new Dimension(500, 400));
+        this.setSize(new Dimension(700, 600));
         
 		c = getContentPane();
 		c.setLayout(new FlowLayout());	
