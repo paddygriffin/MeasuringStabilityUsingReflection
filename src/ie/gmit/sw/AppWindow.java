@@ -14,7 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 public class AppWindow {
+	
 	private JFrame frame;
+	private JButton btnJar;
+	private AppSummary as;
 	private String name;
 
 	public AppWindow(){
