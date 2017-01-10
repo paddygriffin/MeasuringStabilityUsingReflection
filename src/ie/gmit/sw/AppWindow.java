@@ -14,11 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 public class AppWindow {
-	
 	private JFrame frame;
-	private JButton btnJar;
-	private AppSummary as;
 	private String name;
+	private AppSummary as;
 
 	public AppWindow(){
 		//Create a window for the application
@@ -67,17 +65,37 @@ public class AppWindow {
 		btnOther.setMaximumSize(new java.awt.Dimension(150, 30));
 		btnOther.setMargin(new java.awt.Insets(2, 2, 2, 2));
 		btnOther.setMinimumSize(new java.awt.Dimension(150, 30));
+
 		btnOther.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	System.out.println("Calculating Stability");
-                	Reader jr = new Reader();
-                	try {
-						jr.getJar(name);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-    			}
-        });
+
+					public void actionPerformed(ActionEvent evt) {
+
+						// check if their is something entered in the filepath
+						if(txtFileName.getText().length() > 1){
+							try {
+								MetricCalculator m = new MetricCalculator(name);
+								
+								// create the summary
+		                        as = new AppSummary(frame, true);
+
+		                        // get handle on summary table model
+		                        TypeSummaryTableModel tm = as.getTableModel();
+
+		                        // add metric data into table model
+		                        tm.setTableData(m.getData());
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						
+						 // make the dialog visible
+	                    as.setVisible(true);
+						}
+	                    else {
+
+							System.out.println("No jar selected");
+						} 
+			}
+		});
 		
         top.add(txtFileName);
         top.add(btnChooseFile);

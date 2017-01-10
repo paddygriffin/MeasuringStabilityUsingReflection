@@ -33,14 +33,12 @@ public class AppSummary extends JDialog{
 	}
 	
 	public TypeSummaryTableModel getTableModel(){
-
 		return tm;
 	}
-	
 	private void createTable(){
 		tm = new TypeSummaryTableModel();
 		table = new JTable(tm);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setSelectionBackground(Color.YELLOW);
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -49,9 +47,9 @@ public class AppSummary extends JDialog{
 		for (int i = 0; i < table.getColumnCount(); i++){
 			column = table.getColumnModel().getColumn(i);
 			if (i == 0){
-				column.setPreferredWidth(120);
-				column.setMaxWidth(120);
-				column.setMinWidth(120);
+				column.setPreferredWidth(60);
+				column.setMaxWidth(60);
+				column.setMinWidth(60);
 			}else{
 				column.setPreferredWidth(100);
 				column.setMaxWidth(100);
@@ -62,13 +60,12 @@ public class AppSummary extends JDialog{
 		tableScroller = new JScrollPane(table);
 		tableScroller.setPreferredSize(new java.awt.Dimension(485, 235));
 		tableScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		tableScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
+
 		tablePanel.add(tableScroller, FlowLayout.LEFT);
 	}
 	
 	private void configureButtonPanel(){
-    	buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+    	buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
 		//Configure the Cancel button
 		btnClose = new JButton("Close");		

@@ -1,6 +1,8 @@
 package ie.gmit.sw;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.*;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -14,17 +16,19 @@ public class MetricCalculator {
 	private Map<String, Metric> graph = new HashMap<>();
 	private List<Class> jarClass;
 	private String jar;
+	private Reader jr = new Reader();
 
-	public MetricCalculator(List<Class> cls, String jarName) {
+	public MetricCalculator(String jarName) throws FileNotFoundException, IOException {
 
-		this.jarClass = cls;
+	
 		this.jar = jarName;
+		this.jarClass = jr.getJar(jar);
 		addClass();
 		calculateMetric();
 		
 	}
 
-	// addClass
+	// addClass to map
 	public void addClass() {
 		System.out.println("Adding Classes to Map!\n");
 		System.out.println("Classes to be Added:");
@@ -53,15 +57,7 @@ public class MetricCalculator {
 			for (String name : graph.keySet()) {
 
 				Class queryClass = Class.forName(name, false, cl);// cl loads
-				reflection(queryClass);													// data
-				/*System.out.println("Package: " + name);
-				System.out.println();
-				System.out.println("class: " + queryClass.getName());
-				//graph.get(queryClass.getName()).setOutDegree(outDegree);
-				System.out.println("Get InDegree-----: " + graph.get(queryClass.getName()).getInDegree());
-				System.out.println("Get OutDegree-----: " + graph.get(queryClass.getName()).getOutDegree());
-				System.out.println("Get Stability-----: " + graph.get(queryClass.getName()).getStability());
-				new Reflection(queryClass);*/
+				reflection(queryClass);											
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

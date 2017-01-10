@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
+//Jar Reader class
 public class Reader {
 	
 	List<Class> cls = new ArrayList<Class>();
@@ -21,7 +22,7 @@ public class Reader {
 	}
 
 	//Retrieves jar The contents of a Java Application Archive can be read as follows using instances of the classes 
-	public void getJar(String jarName) throws FileNotFoundException, IOException {
+	public List<Class> getJar(String jarName) throws FileNotFoundException, IOException {
 		File file  = new File(jarName);
         URL url = file.toURI().toURL();
         URL[] urls = new URL[]{url};
@@ -53,8 +54,8 @@ public class Reader {
 			}
 			next = in.getNextJarEntry();
 		}
-		new MetricCalculator(cls, jarName);
-		in.close();
+		
+		return cls;
 		
 	}
 
