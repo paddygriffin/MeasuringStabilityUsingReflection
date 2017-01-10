@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Patrick griffin G00314635
+ *
+ */
 public class MetricCalculator {
 
 	private Map<String, Metric> graph = new HashMap<>();
@@ -119,7 +123,7 @@ public class MetricCalculator {
 			}
 		}
 
-		Field[] fields = queryClass.getDeclaredFields();
+		Field[] fields = queryClass.getFields();
 
 		for(Field f : fields)
 		{

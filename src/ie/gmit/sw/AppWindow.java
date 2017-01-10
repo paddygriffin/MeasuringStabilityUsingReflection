@@ -13,11 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
+/**
+ * @author Patrick griffin G00314635
+ * The main window
+ *
+ */
 public class AppWindow {
 	private JFrame frame;
 	private String name;
 	private AppSummary as;
 
+	
 	public AppWindow(){
 		//Create a window for the application
 		frame = new JFrame();
@@ -123,13 +129,13 @@ public class AppWindow {
         bottom.setMaximumSize(new java.awt.Dimension(500, 50));
         bottom.setMinimumSize(new java.awt.Dimension(500, 50));
         
-        JButton btnDialog = new JButton("Show Dialog"); //Create Quit button
+        /*JButton btnDialog = new JButton("Show Dialog"); //Create Quit button
         btnDialog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-            	//AppSummary as =  new AppSummary(frame, true);
-            	//as.show();
+            	AppSummary as =  new AppSummary(frame, true);
+            	as.show();
 			}
-        });
+        });*/
         
         JButton btnQuit = new JButton("Quit"); //Create Quit button
         btnQuit.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +143,7 @@ public class AppWindow {
             	System.exit(0);
 			}
         });
-        bottom.add(btnDialog);
+      //  bottom.add(btnDialog);
         bottom.add(btnQuit);
 
         frame.getContentPane().add(bottom);       

@@ -11,17 +11,32 @@ import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
-//Jar Reader class
+
+/**
+ * Jar Reader class
+ * @author Patrick griffin G00314635
+ *
+ */
 public class Reader {
 	
 	List<Class> cls = new ArrayList<Class>();
 
-	// Constructor
+	
+	/**
+	 * Constructor
+	 */
 	public Reader() {
 		// TODO Auto-generated constructor stub
 	}
 
-	//Retrieves jar The contents of a Java Application Archive can be read as follows using instances of the classes 
+	 
+	/**
+	 * @param jarName
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * Retrieves jar The contents of a Java Application Archive can be read as follows using instances of the classes 
+	 */
 	public List<Class> getJar(String jarName) throws FileNotFoundException, IOException {
 		File file  = new File(jarName);
         URL url = file.toURI().toURL();
